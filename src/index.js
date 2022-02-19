@@ -48,8 +48,6 @@ function load(storageName) {
   }
 }
 
-
-localStorage.clear();
-load("todos");
-let todoList = load("todos");
-console.log(todoList);
+let todo1 = new Todo("Test 1", "First test", Date.now(), "N/A");
+save(todo1);
+console.log(load('todos'));
