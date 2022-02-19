@@ -1,3 +1,5 @@
+import { Todo } from "./todo";
+
 function storageAvailable(type) {
   var storage;
   try {
@@ -23,8 +25,30 @@ function storageAvailable(type) {
   }
 }
 
-if (storageAvailable('localStorage')) {
-  console.log('Hello, World!');
-} else {
-  console.log('No local world!');
+function save(todo) {
+  if (storageAvailable('localStorage')) {
+    console.log("Hello, World!");
+    let todos = new Array();
+  
+    todos.push(todo);
+    localStorage.setItem("todos", JSON.stringify(todos));
+  } else {
+    console.log('No local world!');
+  }
 }
+
+function load(storageName) {
+  if (storageAvailable('localStorage')) {
+    let text = localStorage.getItem(storageName);
+    return JSON.parse(text);
+  } else {
+    console.log("No local world!");
+  }
+}
+
+const firstTodo = new Todo("Test Test Test", "testing", "N/A", "N/A");
+save(firstTodo);
+
+load("todos");
+let todoList = load("todos");
+console.log(todoList);
