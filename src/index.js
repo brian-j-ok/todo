@@ -1,5 +1,6 @@
 import { Todo } from "./todo";
 
+// Function for checking if local storage is available
 function storageAvailable(type) {
   var storage;
   try {
@@ -25,6 +26,7 @@ function storageAvailable(type) {
   }
 }
 
+// Save and load a todo in or from an array of Todo objects
 function save(todo) {
   if (storageAvailable('localStorage')) {
     console.log("Hello, World!");
@@ -46,9 +48,8 @@ function load(storageName) {
   }
 }
 
-const firstTodo = new Todo("Test Test Test", "testing", "N/A", "N/A");
-save(firstTodo);
 
+localStorage.clear();
 load("todos");
 let todoList = load("todos");
 console.log(todoList);
