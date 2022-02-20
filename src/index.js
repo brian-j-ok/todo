@@ -1,4 +1,5 @@
-import { Todo } from "./todo";
+import Todo from "./todo";
+import TodoProject from "./todoProject";
 
 // Function for checking if local storage is available
 function storageAvailable(type) {
@@ -27,13 +28,10 @@ function storageAvailable(type) {
 }
 
 // Save and load a todo in or from an array of Todo objects
-function save(todo) {
+function save(todoProject) {
   if (storageAvailable('localStorage')) {
     console.log("Hello, World!");
-    let todos = new Array();
-  
-    todos.push(todo);
-    localStorage.setItem("todos", JSON.stringify(todos));
+    localStorage.setItem("todos", JSON.stringify(todoProject.getTodoItems()));
   } else {
     console.log('No local world!');
   }
@@ -51,9 +49,13 @@ function load(storageName) {
 function run() {
   let todoProject = load("todos");
   todoProject.forEach(todo => {
-    let newTodo = new Todo(todo.title, todo.description, todo.dueDate, todo.priority);
-    document.body.appendChild(newTodo.generate());
+    todoProject.addTodo(todo);
   });
 }
 
-run();
+const testProject = new TodoProject("default");
+const todo1 = new Todo("Test1", "First Test", "N/A", "N/A");
+const todo2 = new Todo("Test2", "Second Test", "N/A", "N/A");
+testProject.addTodo(todo1);
+testProject.addTodo(todo2);
+console.log(testProject.todoItems[1].title);
