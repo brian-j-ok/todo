@@ -57,15 +57,14 @@ function load(storageName) {
       }
       projects.push(tempProject);
     }
-
   } else {
     console.log("No local world!");
   }
 }
 
 function run() {
-  document.body.appendChild(loadNavbar());
+  load('projects');
+  document.body.appendChild(loadNavbar(projects));
 }
 
-load('projects');
-console.log(projects);
+run();
