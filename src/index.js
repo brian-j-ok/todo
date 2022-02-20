@@ -48,6 +48,12 @@ function load(storageName) {
   }
 }
 
-let todo1 = new Todo("Test 1", "First test", Date.now(), "N/A");
-save(todo1);
-console.log(load('todos'));
+function run() {
+  let todoProject = load("todos");
+  todoProject.forEach(todo => {
+    let newTodo = new Todo(todo.title, todo.description, todo.dueDate, todo.priority);
+    document.body.appendChild(newTodo.generate());
+  });
+}
+
+run();
