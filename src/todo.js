@@ -7,22 +7,6 @@ export default class Todo {
     this.priority = priority;
   }
 
-  // Generate Todo
-  generate() {
-    const todoItem = document.createElement('div');
-
-    const todoTitle = document.createElement('h2');
-    todoTitle.innerHTML = this.title;
-
-    const todoDescription = document.createElement('p');
-    todoDescription.innerHTML = this.description;
-
-    todoItem.appendChild(todoTitle);
-    todoItem.appendChild(todoDescription);
-
-    return todoItem;
-  }
-
   // Get/Set
   get getTitle() {
     return this.title;

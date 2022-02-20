@@ -16,7 +16,7 @@ export default function loadNavbar(projects) {
       const projectTodo = document.createElement('div');
       projectTodo.innerHTML = todo.title;
       projectNav.appendChild(projectTodo);
-    })
+    });
 
     navbar.appendChild(projectNav);
   });
