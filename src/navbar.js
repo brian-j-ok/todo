@@ -1,6 +1,8 @@
 import Todo from "./todo";
 import TodoProject from "./todoProject";
 
+import './styles/navbar.css';
+
 export default function loadNavbar(projects) {
   const navbar = document.createElement('nav');
   navbar.classList.add('navbar');

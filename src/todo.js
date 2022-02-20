@@ -7,6 +7,22 @@ export default class Todo {
     this.priority = priority;
   }
 
+  generate() {
+    const div = document.createElement('div');
+    div.classList.add('todo');
+
+    const h = document.createElement('h2');
+    h.innerHTML = this.title;
+
+    const p = document.createElement('p');
+    p.innerHTML = this.description;
+
+    div.appendChild(h);
+    div.appendChild(p);
+
+    return div;
+  }
+
   // Get/Set
   get getTitle() {
     return this.title;
@@ -24,5 +40,3 @@ export default class Todo {
     this.description = description;
   }
 }
-
-export const generate = Todo.prototype.generate;

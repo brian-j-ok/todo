@@ -3,7 +3,12 @@ import TodoProject from "./todoProject";
 
 import loadNavbar from "./navbar";
 
+import './styles/style.css';
+
 const projects = [];
+
+const content = document.createElement('div');
+content.setAttribute('id', 'content');
 
 // Function for checking if local storage is available
 function storageAvailable(type) {
@@ -65,6 +70,12 @@ function load(storageName) {
 function run() {
   load('projects');
   document.body.appendChild(loadNavbar(projects));
+  document.body.appendChild(content);
+  projects.forEach(project => {
+    project.todoItems.forEach(item => {
+      content.appendChild(item.generate());
+    });
+  });
 }
 
 run();
