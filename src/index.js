@@ -1,6 +1,10 @@
 import Todo from "./todo";
 import TodoProject from "./todoProject";
 
+import loadNavbar from "./navbar";
+
+const projects = [];
+
 // Function for checking if local storage is available
 function storageAvailable(type) {
   var storage;
@@ -28,11 +32,9 @@ function storageAvailable(type) {
 }
 
 // Save and load a todo in or from an array of Todo objects
-function save(todoProject) {
+function save() {
   if (storageAvailable('localStorage')) {
-    console.log("Hello, World!");
-    localStorage.setItem(todoProject.name, JSON.stringify(todoProject.todoItems));
-    localStorage.setItem('projects', JSON.stringify(todoProject));
+    localStorage.setItem('projects', JSON.stringify(projects));
   } else {
     console.log('No local world!');
   }
@@ -41,19 +43,29 @@ function save(todoProject) {
 function load(storageName) {
   if (storageAvailable('localStorage')) {
     let text = localStorage.getItem(storageName);
-    return JSON.parse(text);
+    let temp = JSON.parse(text);
+
+    for (let i=0; i<temp.length; i++) {
+      let tempProject = new TodoProject(temp[i].name);
+      for (let x=0; x<temp[i].todoItems.length; x++) {
+        let tempTitle = temp[i].todoItems[x].title;
+        let tempDesc = temp[i].todoItems[x].description;
+        let tempDate = temp[i].todoItems[x].dueDate;
+        let tempPriority = temp[i].todoItems[x].priority;
+        let tempTodo = new Todo(tempTitle, tempDesc, tempDate, tempPriority);
+        tempProject.addTodo(tempTodo);
+      }
+      projects.push(tempProject);
+    }
+
   } else {
     console.log("No local world!");
   }
 }
 
 function run() {
-
+  document.body.appendChild(loadNavbar());
 }
 
-// const tempProject = new TodoProject("default");
-// tempProject.addTodo(new Todo("Test 1", "First todo", "N/A", "N/A"));
-// save(tempProject);
-
-console.log(load('projects'));
-console.log(load('default'));
+load('projects');
+console.log(projects);
