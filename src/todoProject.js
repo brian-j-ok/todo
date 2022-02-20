@@ -22,9 +22,4 @@ export default class TodoProject {
       document.body.appendChild(newTodo.generate());
     });
   }
-
-  // Get todo items
-  get getTodoItems() {
-    return this.todoItems;
-  }
 }

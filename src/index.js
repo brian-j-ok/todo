@@ -31,7 +31,8 @@ function storageAvailable(type) {
 function save(todoProject) {
   if (storageAvailable('localStorage')) {
     console.log("Hello, World!");
-    localStorage.setItem("todos", JSON.stringify(todoProject.getTodoItems()));
+    localStorage.setItem(todoProject.name, JSON.stringify(todoProject.todoItems));
+    localStorage.setItem('projects', JSON.stringify(todoProject));
   } else {
     console.log('No local world!');
   }
@@ -47,15 +48,12 @@ function load(storageName) {
 }
 
 function run() {
-  let todoProject = load("todos");
-  todoProject.forEach(todo => {
-    todoProject.addTodo(todo);
-  });
+
 }
 
-const testProject = new TodoProject("default");
-const todo1 = new Todo("Test1", "First Test", "N/A", "N/A");
-const todo2 = new Todo("Test2", "Second Test", "N/A", "N/A");
-testProject.addTodo(todo1);
-testProject.addTodo(todo2);
-console.log(testProject.todoItems[1].title);
+// const tempProject = new TodoProject("default");
+// tempProject.addTodo(new Todo("Test 1", "First todo", "N/A", "N/A"));
+// save(tempProject);
+
+console.log(load('projects'));
+console.log(load('default'));
